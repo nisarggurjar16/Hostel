@@ -1,0 +1,73 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<section id="breadcrumbs" class="breadcrumbs">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center">
+      <h2>Preferences</h2>
+      <ol>
+        <li><a href="index.html">Home</a></li>
+        <li>Preferences</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<form method="post">
+    {% csrf_token %}
+  <div class="form-group">
+    <label for="exampleFormControlInput1">User</label>
+    <input
+      type="email"
+      readonly
+      class="form-control"
+      value="{{ request.user.username }}"
+      id="exampleFormControlInput1"
+    />
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">First Preference</label>
+    <select class="form-control" name="ch1" id="exampleFormControlSelect1">
+      <option selected  value="{{ userPreferences.choice1.id }}">{{ userPreferences.choice1 }}</option>
+      {% for student in preferenced_students %}
+      <option value="{{ student.id}}">{{ student.username }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Second Preference</label>
+    <select class="form-control" name="ch2" id="exampleFormControlSelect1">
+      <option selected  value="{{ userPreferences.choice2.id }}">{{ userPreferences.choice2 }}</option>
+      {% for student in preferenced_students %}
+      <option value="{{ student.id}}">{{ student.username }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Third Preference</label>
+    <select class="form-control" name="ch3" id="exampleFormControlSelect1">
+      <option selected  value="{{ userPreferences.choice3.id }}">{{ userPreferences.choice3 }}</option>
+      {% for student in preferenced_students %}
+      <option value="{{ student.id}}">{{ student.username }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Fourth Preference</label>
+    <select class="form-control" name="ch4" id="exampleFormControlSelect1">
+      <option selected  value="{{ userPreferences.choice4.id }}">{{ userPreferences.choice4 }}</option>
+      {% for student in preferenced_students %}
+      <option value="{{ student.id}}">{{ student.username }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Fifth Preference</label>
+    <select class="form-control" name="ch5" id="exampleFormControlSelect1">
+      <option selected  value="{{ userPreferences.choice5.id }}">{{ userPreferences.choice5 }}</option>
+      {% for student in preferenced_students %}
+      <option value="{{ student.id}}">{{ student.username }}</option>
+      {% endfor %}
+    </select>
+  </div>
+  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+</form>
+{% endblock %}

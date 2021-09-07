@@ -6,12 +6,11 @@ class StudentInformation(models.Model):
     user = models.OneToOneField(
         User, null=True, blank=True, related_name='Student', on_delete=models.CASCADE)
     mobile = models.CharField(max_length=13, null=True, blank=True)
-    fathersName = models.CharField(max_length=128, null=True, blank=True)
     profilePicture = models.FileField(null=True, blank=True)
-    UniqueID = models.CharField(max_length=128, null=True, blank=True)
     joiningDate = models.DateTimeField(
         auto_now_add=True, null=True, blank=True)
     monthlyFees = models.IntegerField(default=1500, null=True, blank=True)
+    percentage = models.IntegerField(null =True, blank=True)
 
     def __str__(self):
         return self.user.username

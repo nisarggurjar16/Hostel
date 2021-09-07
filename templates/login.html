@@ -20,7 +20,8 @@
   <div class="row">
     <div class="col-md-6" style="">
       <h3 style="text-align: center">For SignUp</h3>
-      <form method="post" name="loginForm">
+      <form method="post" name="loginForm" enctype="multipart/form-data" accept="<nav aria-label="Page navigation example">
+      </nav>
         {% csrf_token %}
         <div class="form-group">
           <label for="">First Name</label>
@@ -56,6 +57,37 @@
           />
         </div>
         <div class="form-group">
+          <label for="exampleInputEmail1">Mobile Number</label>
+          <input
+            type="text"
+            name="mob"
+            class="form-control"
+            id=""
+            placeholder="Enter Mobile Number"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Monthly Fees</label>
+          <input
+            type="number"
+            name="fees"
+            class="form-control"
+            id=""
+            placeholder="Enter Monthly Fees"
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Profile Picture</label>
+          <input
+            type="file"
+            name="profile"
+            class="form-control"
+            id=""
+            aria-describedby="emailHelp"
+            placeholder="Enter Mobile Number"
+          />
+        </div>
+        <div class="form-group">
           <label for="exampleInputEmail1">Email address</label>
           <input
             type="email"
@@ -68,6 +100,16 @@
           <small id="emailHelp" class="form-text text-muted"
             >We'll never share your email with anyone else.</small
           >
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Percentage</label>
+          <input
+            type="number"
+            name="percent"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Percentage"
+          />
         </div>
         <div class="form-group">
           <label for="exampleInputPassword1">Password</label>
@@ -90,7 +132,7 @@
           />
         </div>
         {% if errorPWD %}
-        <span style="color: red">Passwords does not match</span>
+        <span id="ErrorWarning">Passwords does not match</span>
         {% endif %}
         <div class="text-center">
           <button name="signup" type="submit">Sign Up</button>
@@ -121,6 +163,9 @@
             placeholder="Password"
           />
         </div>
+        {% if errorLogin %}
+        <span id="ErrorWarning">User name and password not matched</span>
+        {% endif %}
         <button type="submit" name="login" class="btn btn-primary">
           Submit
         </button>

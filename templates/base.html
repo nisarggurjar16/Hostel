@@ -52,10 +52,17 @@
       href="{% static 'vendor/swiper/swiper-bundle.min.css' %}"
       rel="stylesheet"
     />
-
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
     <!-- Template Main CSS File -->
     <link href="{% static 'css/style.css' %}" rel="stylesheet" />
-
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <!-- =======================================================
   * Template Name: Company - v4.3.0
   * Template URL: https://bootstrapmade.com/company-free-html-bootstrap-template/
@@ -79,8 +86,8 @@
             <li><a href="{% url 'home' %}" class="active">Home</a></li>
 
             <li><a href="{% url 'about-us' %}">About Us</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="{% url 'preferences' %}">Preferences</a></li>
+            <li><a href="{% url 'result' %}">Result</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a href="{% url 'contact' %}">Contact</a></li>
             {% if request.user.is_authenticated %}
@@ -217,7 +224,8 @@
     <script src="{% static 'vendor/php-email-form/validate.js' %}"></script>
     <script src="{% static 'vendor/swiper/swiper-bundle.min.js' %}"></script>
     <script src="{% static 'vendor/waypoints/noframework.waypoints.js' %}"></script>
-
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
     <!-- Template Main JS File -->
     <script src="{% static 'js/main.js' %}"></script>
   </body>

@@ -1,0 +1,42 @@
+{% extends 'base.html' %} {% load static %} {% block body %}
+<section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-center">
+        <h2>Result</h2>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>Result</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+  
+      <th scope="col" style="text-align: center;">Topper</th>
+      <th scope="col" style="text-align: center;">Average</th>
+  
+    </tr>
+  </thead>
+  <tbody>
+  {% for i,j in roomies %}
+    <tr>
+      <td style="text-align: center;">{{ i }}</td>
+      <td style="text-align: center;">{{ j }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+<h3> Room Not Alloted To </h3>
+<table class="table table-dark">
+  <tbody>
+  {% for i in free %}
+    <tr>
+      <td style="text-align: center;">{{ i }}</td>
+    </tr>
+   {% endfor %}
+  </tbody>
+</table>
+{% endblock %}
