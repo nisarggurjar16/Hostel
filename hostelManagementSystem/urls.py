@@ -28,5 +28,6 @@ urlpatterns = [
     path('login/', LoginSignupForm, name="login"),
     path('logout/', Logout, name="logout"),
     path('preferences/', PerferencesView, name="preferences"),
-    path('Results/', Results, name="result")
+    path('Results/', Results, name="result"),
+    path('adminpanel/', AdminPanel, name='admin')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

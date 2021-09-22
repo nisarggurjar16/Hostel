@@ -3,8 +3,9 @@ from .models import *
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from Students.models import *
-
-
+from django.conf import settings
+from django.template.loader import get_template
+from django.core.mail import EmailMultiAlternatives
 def AboutUs(request):
     return render(request, 'about.html')
 
@@ -47,6 +48,13 @@ def LoginSignupForm(request):
             else:
                 user = User.objects.create_user(
                     first_name=fname, last_name=lname, email=email, password=pwd1, username=user)
+                sub = "Student Account Created Successfully"
+                data = {"name":fname, "username":user}
+                html = get_template("mail.html").render(data)
+                from_mail = settings.EMAIL_HOST_USER
+                msg = EmailMultiAlternatives(sub, '', from_mail, [email])
+                msg.attach_alternative(html, 'text/html')
+                msg.send()
                 student = StudentInformation.objects.create(
                     user=user, mobile=mob, profilePicture=pic, monthlyFees=fees, percentage=percent)
                 if int(student.percentage) > 60:
@@ -67,6 +75,8 @@ def LoginSignupForm(request):
         check = authenticate(username=username, password=password)
         if check:
             login(request, check)
+            if request.user.is_superuser:
+                return redirect('admin')
             return redirect('home')
         else:
             errorLogin = True
@@ -78,3 +88,11 @@ def LoginSignupForm(request):
 def Logout(request):
     logout(request)
     return redirect('home')
+
+
+def AdminPanel(request):
+    if not request.user.is_superuser:
+        return redirect('home')
+    
+    students = StudentInformation.objects.all()
+    return render(request, 'admin.html', {"students":students})
