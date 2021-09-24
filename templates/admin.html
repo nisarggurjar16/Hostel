@@ -30,7 +30,7 @@
         <td>{{ student.joiningDate }}</td>
         <td>{{ student.monthlyFees }}</td>
         <td>
-          <button class="btn btn-success">Pay</button>
+          <a class="btn btn-success">Pay</a>
           <a href="{% url 'delete-student' student.user.id %}" class="btn btn-danger"> Delete </a>
         </td>
       </tr>

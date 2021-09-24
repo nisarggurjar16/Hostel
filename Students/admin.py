@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(StudentInformation)
 admin.site.register(Perferences)
+admin.site.register(PaymentDetail)

@@ -29,3 +29,9 @@ class Perferences(models.Model):
         User, null=True, blank=True, on_delete=models.SET_NULL, related_name="choice4")
     choice5 = models.ForeignKey(
         User, null=True, blank=True, on_delete=models.SET_NULL, related_name="choice5")
+
+
+class PaymentDetail(models.Model):
+    std = models.ForeignKey(StudentInformation, blank=True, null=True, on_delete= models.CASCADE)
+    pay_id = models.TextField(blank=True, null=True)
+    status = models.CharField(max_length=128, blank=True, null=True)

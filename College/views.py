@@ -5,7 +5,10 @@ from django.contrib.auth import authenticate, login, logout
 from Students.models import *
 from django.conf import settings
 from django.template.loader import get_template
+import requests
 from django.core.mail import EmailMultiAlternatives
+import json
+
 def AboutUs(request):
     return render(request, 'about.html')
 
@@ -102,3 +105,53 @@ def DeleteStudent(request, uid):
     usr = User.objects.filter(id = uid)
     usr.delete()
     return redirect('admin')
+
+headers = { "X-Api-Key": "d82016f839e13cd0a79afc0ef5b288b3", "X-Auth-Token": "3827881f669c11e8dad8a023fd1108c2"}
+
+
+def PaymentDecline(request):
+    return render(request, 'payerror.html')
+
+def Payment(request, sid):
+    student = StudentInformation.objects.get(id = sid)
+    mob = student.mobile
+    purp = "Hostel Fees"
+    amt = student.monthlyFees
+    email = student.user.email
+    name = student.user.username
+
+    payload = {
+        "purpose":purp,
+        "amount":amt,
+        "buyer_name":name,
+        "email":email,
+        "phone":mob,
+        "send_mail":True,
+        "send_sms":True,
+        "redirect_url":""
+    }
+
+    response = requests.post("https://www.instamojo.com/api/1.1/payment-requests/", data=payload, headers=headers)
+    print(response)
+    y = response.text
+    d = json.loads(y)
+    a = d["payment_request"]["longurl"]
+    i = d["payment_request"]["id"]
+    PaymentDetail.objects.create(std = student, pay_id = i)
+    return redirect(a)
+
+
+def payment_check(request, sid):
+    pay = False
+    i = PaymentDetail.objects.filter(id = sid).last()
+    ii = i.pay_id
+    response = requests.get("https://www.instamojo.com/api/1.1/payment-requests/" + ii + '/', headers=headers)
+    y = response.text
+    d = json.loads(y)
+    status = ["payment_request"]["status"]
+    if status == "Complete":
+        i.status = status
+        return redirect("admin")
+    else:
+        return redirect("payfail")
+    
