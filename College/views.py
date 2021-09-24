@@ -106,7 +106,7 @@ def DeleteStudent(request, uid):
     usr.delete()
     return redirect('admin')
 
-headers = { "X-Api-Key": "d82016f839e13cd0a79afc0ef5b288b3", "X-Auth-Token": "3827881f669c11e8dad8a023fd1108c2"}
+headers = { "X-Api-Key": "", "X-Auth-Token": ""}
 
 
 def PaymentDecline(request):
