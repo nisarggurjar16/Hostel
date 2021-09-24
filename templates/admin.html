@@ -20,6 +20,7 @@
         <th scope="col">Name</th>
         <th scope="col">Joining Date</th>
         <th scope="col">Fees</th>
+        <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
@@ -28,6 +29,10 @@
         <td>{{ student.user.username }}</td>
         <td>{{ student.joiningDate }}</td>
         <td>{{ student.monthlyFees }}</td>
+        <td>
+          <button class="btn btn-success">Pay</button>
+          <a href="{% url 'delete-student' student.user.id %}" class="btn btn-danger"> Delete </a>
+        </td>
       </tr>
       {% endfor %}
     </tbody>

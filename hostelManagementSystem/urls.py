@@ -29,5 +29,6 @@ urlpatterns = [
     path('logout/', Logout, name="logout"),
     path('preferences/', PerferencesView, name="preferences"),
     path('Results/', Results, name="result"),
-    path('adminpanel/', AdminPanel, name='admin')
+    path('adminpanel/', AdminPanel, name='admin'),
+    path('delete/<int:uid>/', DeleteStudent, name='delete-student')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

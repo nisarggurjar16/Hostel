@@ -96,3 +96,9 @@ def AdminPanel(request):
     
     students = StudentInformation.objects.all()
     return render(request, 'admin.html', {"students":students})
+
+
+def DeleteStudent(request, uid):
+    usr = User.objects.filter(id = uid)
+    usr.delete()
+    return redirect('admin')
